@@ -15,11 +15,16 @@ var array = arr.myFilter((e) => e === num);
 Array.prototype.myMap = function (callback) {
   var mapAns = [];
   for (var i = 0; i < this.length; i++) {
-    mapAns.push(callback(this[i]));
+    mapAns.push(callback(this[i], i, this));
   }
   return mapAns;
 };
-// console.log(arr.myMap((e) => e * 2));
+
+arr.myMap((e, index, arr) => {
+  console.log("e", e * 2);
+  console.log("index", index);
+  console.log("arr", arr);
+});
 
 // arr.forEach((e) => console.log(e * 4));
 
@@ -103,7 +108,6 @@ Array.prototype.mmm = function (callback) {
 
   for (var i = 0; i < this.length; i++) {
     arr[i] = this[i];
-
 
     if (callback(this[i])) ans.push(this[i]);
   }
