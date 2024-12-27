@@ -75,6 +75,8 @@ const promiseAll = (promises) => {
   });
 };
 
+
+
 promiseAll(promises).then((values) => {
   console.log(values); // [3, 1337, "foo"]
 });
@@ -118,7 +120,7 @@ promiseAny([promise1, promise2, promise3])
   });
 
 const promissAll = () => {
-  return new Promise((res, re) => {});
+  return new Promise((res, re) => { });
 };
 
 //! sleep promise function

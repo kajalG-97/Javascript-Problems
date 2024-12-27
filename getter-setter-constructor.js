@@ -15,6 +15,7 @@ class Person {
 }
 
 let person = new Person("John Winchester");
+let person2 = new Person("John Winchester");
 
 console.log(person.name);
 

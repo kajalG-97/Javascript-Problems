@@ -9,6 +9,14 @@ Array.prototype.myFilter = function (callback) {
   return ans;
 };
 
+
+Array.prototype.myfilter1 = function (callback) {
+
+  for (var i = 0; i < this.length; i++) {
+    if (callback(this[i])) return this[i];
+  }
+}
+
 var array = arr.myFilter((e) => e === num);
 // console.log(array);
 

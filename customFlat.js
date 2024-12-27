@@ -14,30 +14,32 @@ const customFlatFunc = (arr, depth) => {
   return result;
 };
 
-// console.log(customFlatFunc(ts, Infinity));
-console.log(customFlatFunc(ts, 2));
-// console.log(ts);
+console.log(customFlatFunc([[[[[0]], { [1]: 8 }], [[[2], [3]]], [[4], [5]]]], Infinity));
+console.log(customFlatFunc([[[[[0]], [1]], [[[2], [3]]], [[4], [5]]]], 2));
 
-// composition pollyfill
-
-let input = [1, [2, 3], [3], [[[5]], 6]];
+let input = [1, [[[[[[2, 3]]]]]], [3], [[[5]], 6]];
 
 const flatten = (arr) => {
-  return arr.reduce((acc, curr) => {
-    if (Array.isArray(curr)) {
-      return acc.concat(flatten(curr));
-    }
-    return acc.concat(curr);
-  }, []);
+  return arr.reduce(
+    (acc, curr) => {
+      console.log('acc', acc.concat(curr));
+
+      if (Array.isArray(curr)) {
+        return acc.concat(flatten(curr));
+      }
+      return acc.concat(curr);
+    }, []);
 };
 
-let output = input.reduce((acc, curr) => {
-  return acc.concat(Array.isArray(curr) ? flatten(curr) : curr);
-}, []);
+console.log('flatten', flatten(input));
 
-console.log(output);
 
-// or there is a new Array flat method that can be used to solve this.
-// let output = [[[[[0]], [1]], [[[2], [3]]], [[4], [5]]]].flat().flat(Infinity)
+function flattenArray(arr) {
+  return arr.reduce((acc, val) =>
+    Array.isArray(val) ? acc.concat(flattenArray(val)) : acc.concat(val), []);
+}
 
-console.log(output); // [0,1,2,3,4,5]
+// // or there is a new Array flat method that can be used to solve this.
+// output = [[[[[0]], [1]], [[[2], [3]]], [[4], [5]]]].flat(Infinity)
+
+// console.log(output); // [0,1,2,3,4,5]
